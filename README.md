@@ -28,6 +28,8 @@ model = PbModel(input_saved_model_dir_path, classes)
 objects_dict_list, raw_pred = model.inference(image, resize_input_shape=(512, 512))
 ```
 
+#### Output
+
 - objects_dict_list
 
 ```text
