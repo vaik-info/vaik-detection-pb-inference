@@ -5,7 +5,7 @@ Inference with the PB model of the Tensorflow Object Detection API and output th
 ## Install
 
 ``` shell
-pip install git+https://github.com/vaik-info/vaik-detection-inference.git
+pip install git+https://github.com/vaik-info/vaik-detection-pb-inference.git
 ```
 
 ## Usage
