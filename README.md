@@ -2,6 +2,10 @@
 
 Inference with the PB model of the Tensorflow Object Detection API and output the result as a dict in extended Pascal VOC format.
 
+## Example
+
+![vaik-detection-pb-inference](https://user-images.githubusercontent.com/116471878/198853671-a868f67f-7105-4ea8-b10b-4362596728c9.png)
+
 ## Install
 
 ``` shell
