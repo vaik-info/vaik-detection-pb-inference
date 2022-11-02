@@ -1,4 +1,4 @@
-# vaik-detection-inference
+# vaik-detection-pb-inference
 
 Inference with the PB model of the Tensorflow Object Detection API and output the result as a dict in extended Pascal VOC format.
 
