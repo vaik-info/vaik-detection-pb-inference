@@ -43,23 +43,22 @@ class PbModel:
 
         return output_image
 
-    def __output_parse(self, filter_pred: Dict, input_image_shape: Tuple[int, int], score_th: float) -> List[Dict]:
+    def __output_parse(self, filter_pred: Dict, input_image_shape: Tuple[int, int]) -> List[Dict]:
         objects_dict_list = []
         for pred_index in range(filter_pred['num_detections']):
             score = float(filter_pred['detection_scores'][pred_index])
-            if score > score_th:
-                classes_index = int(filter_pred['detection_classes'][pred_index])
-                name = str(classes_index) if self.classes is None else self.classes[classes_index - 1]
-                ymin = max(0, int((filter_pred['detection_boxes'][pred_index][0] * input_image_shape[0])))
-                xmin = max(0, int((filter_pred['detection_boxes'][pred_index][1] * input_image_shape[1])))
-                ymax = min(input_image_shape[0] - 1,
-                           int((filter_pred['detection_boxes'][pred_index][2] * input_image_shape[0])))
-                xmax = min(input_image_shape[1] - 1,
-                           int((filter_pred['detection_boxes'][pred_index][3] * input_image_shape[1])))
-                object_extend_dict = {'score': score}
-                objects_dict = pascal_voc_rw_ex.get_objects_dict_template(name, xmin, ymin, xmax, ymax,
-                                                                          object_extend_dict=object_extend_dict)
-                objects_dict_list.append(objects_dict)
+            classes_index = int(filter_pred['detection_classes'][pred_index])
+            name = str(classes_index) if self.classes is None else self.classes[classes_index - 1]
+            ymin = max(0, int((filter_pred['detection_boxes'][pred_index][0] * input_image_shape[0])))
+            xmin = max(0, int((filter_pred['detection_boxes'][pred_index][1] * input_image_shape[1])))
+            ymax = min(input_image_shape[0] - 1,
+                       int((filter_pred['detection_boxes'][pred_index][2] * input_image_shape[0])))
+            xmax = min(input_image_shape[1] - 1,
+                       int((filter_pred['detection_boxes'][pred_index][3] * input_image_shape[1])))
+            object_extend_dict = {'score': score}
+            objects_dict = pascal_voc_rw_ex.get_objects_dict_template(name, xmin, ymin, xmax, ymax,
+                                                                      object_extend_dict=object_extend_dict)
+            objects_dict_list.append(objects_dict)
         return objects_dict_list
 
     @classmethod
